@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="img-wrapper">
+        <img src="./image.png" />
+    </div>
+    <script>
+        const mySubmit = () => {
+            console.log("on submit")
+            const obj = { value: document.getElementById('input').value };
+            const method = "POST";
+            const body = JSON.stringify(obj);
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+            fetch("/", { method, headers, body })
+                .then((res) => res.json())
+                .then(json => {
+                    const newImageTag = document.createElement("img")
+                    newImageTag.src = "image.png"
+                    document.getElementById("img-wrapper").appendChild(newImageTag)
+                    console.log(json, newImageTag)
+                })
+                .catch(console.error);
+        }
+    </script>
+    <form>
+        <input id="input" type="range" min="-2" max="2" />
+        <button onclick="mySubmit()" type="button">submit</button>
+    </form>
+</body>
+
+</html>
