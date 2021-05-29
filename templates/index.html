@@ -14,6 +14,7 @@
         <img src="./image.png" />
     </div>
     <script>
+        let dummy = 0
         const mySubmit = () => {
             console.log("on submit")
             const obj = { value: document.getElementById('input').value };
@@ -27,11 +28,12 @@
                 .then((res) => res.json())
                 .then(json => {
                     const newImageTag = document.createElement("img")
-                    newImageTag.src = "image.png"
+                    newImageTag.src = `image.png?dummy=${dummy}`
                     document.getElementById("img-wrapper").appendChild(newImageTag)
                     console.log(json, newImageTag)
                 })
                 .catch(console.error);
+            dummy++
         }
     </script>
     <form>

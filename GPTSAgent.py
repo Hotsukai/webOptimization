@@ -10,8 +10,6 @@ def hl_to_rgb(x):
 
 N = 30
 X_im = np.zeros((N, N, 2))
-rs = []
-xs = []
 for i in range(N):
     for j in range(N):
         X_im[i, j, 0] = i / N  # Hue
