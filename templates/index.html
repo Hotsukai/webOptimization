@@ -1,45 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
-
+{% raw %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
-    <title>Document</title>
+    <title>ガウス過程トンプソン抽出での色最適化サンプル</title>
 </head>
 
 <body>
-    <div id="img-wrapper">
-        <img src="./image.png" />
+    <div id="app">
+        <form>
+            <p>
+                Proposed colorへの評価を入力してください
+                <input v-model="value" id="input" type="range" min="-2" max="2" />{{value}}
+            </p>
+            <button @click="submitSample" type="button">submit</button>
+            <button @click="reset" type="button">reset</button>
+        </form>
+        <div v-for="(src, index) in reversedImageSrcs" :key=src>
+            <hr />
+            <p>{{reversedImageSrcs.length -index}}番目</p>
+            <img :src="src" />
+        </div>
     </div>
-    <script>
-        let dummy = 0
-        const mySubmit = () => {
-            console.log("on submit")
-            const obj = { value: document.getElementById('input').value };
-            const method = "POST";
-            const body = JSON.stringify(obj);
-            const headers = {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            };
-            fetch("/", { method, headers, body })
-                .then((res) => res.json())
-                .then(json => {
-                    const newImageTag = document.createElement("img")
-                    newImageTag.src = `image.png?dummy=${dummy}`
-                    document.getElementById("img-wrapper").appendChild(newImageTag)
-                    console.log(json, newImageTag)
-                })
-                .catch(console.error);
-            dummy++
-        }
-    </script>
-    <form>
-        <input id="input" type="range" min="-2" max="2" />
-        <button onclick="mySubmit()" type="button">submit</button>
-    </form>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script type="text/javascript" src="./static/main.js"></script>
 </body>
-
+{% endraw %}
 </html>
