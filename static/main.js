@@ -10,7 +10,7 @@ new Vue({
   },
   computed:{
     reversedImageSrcs(){
-      return this.imageSrcs.reverse()
+      return this.imageSrcs.slice().reverse()
     }
   },
   methods: {

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 {% raw %}
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +14,22 @@
         <form>
             <p>
                 Proposed colorへの評価を入力してください
-                <input v-model="value" id="input" type="range" min="-2" max="2" />{{value}}
+            </p>
+            -2 <input v-model="value" id="input" type="range" min="-2" max="2" />2
+            <p>
+                {{value}}
+            </p>
             </p>
             <button @click="submitSample" type="button">submit</button>
             <button @click="reset" type="button">reset</button>
         </form>
+        <ul>
+            <li>Solution space :解空間</li>
+            <li>Proposed color :選択された解</li>
+            <li>μ :期待値関数の事後分布の期待値</li>
+            <li>diag(Σ): 分散の対角成分</li>
+            <li>Acquisition function :獲得関数(= UCB値)</li>
+        </ul>
         <div v-for="(src, index) in reversedImageSrcs" :key=src>
             <hr />
             <p>{{reversedImageSrcs.length -index}}番目</p>
@@ -28,4 +40,5 @@
     <script type="text/javascript" src="./static/main.js"></script>
 </body>
 {% endraw %}
+
 </html>
